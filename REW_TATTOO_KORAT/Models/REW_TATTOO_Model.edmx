@@ -1,0 +1,289 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="REW_TATTOO_DBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Member">
+          <Key>
+            <PropertyRef Name="UserName" />
+          </Key>
+          <Property Name="UserName" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar(max)" />
+          <Property Name="LastName" Type="nvarchar(max)" />
+          <Property Name="Address" Type="nvarchar(max)" />
+          <Property Name="Tel" Type="char" MaxLength="10" />
+          <Property Name="EMail" Type="nvarchar(max)" />
+          <Property Name="Password" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="OderMaster">
+          <Key>
+            <PropertyRef Name="O_ID" />
+          </Key>
+          <Property Name="O_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="O_Date" Type="date" />
+          <Property Name="UserName" Type="varchar" MaxLength="10" />
+          <Property Name="Do_Date" Type="date" />
+          <Property Name="Tattoo_ID" Type="int" />
+          <Property Name="Price" Type="decimal" Precision="7" Scale="2" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="Status" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Tattoo">
+          <Key>
+            <PropertyRef Name="Tattoo_ID" />
+          </Key>
+          <Property Name="Tattoo_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tattoo_Name" Type="nvarchar" MaxLength="50" />
+          <Property Name="Tattoo_Pic" Type="nvarchar(max)" />
+          <Property Name="Size" Type="nvarchar(max)" />
+          <Property Name="Unit_Price" Type="decimal" Precision="7" Scale="2" />
+          <Property Name="Type_ID" Type="int" />
+        </EntityType>
+        <EntityType Name="Tattoo_Type">
+          <Key>
+            <PropertyRef Name="Type_ID" />
+          </Key>
+          <Property Name="Type_ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Type_Name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_OderMaster_ToTable">
+          <End Role="Tattoo" Type="Self.Tattoo" Multiplicity="0..1" />
+          <End Role="OderMaster" Type="Self.OderMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tattoo">
+              <PropertyRef Name="Tattoo_ID" />
+            </Principal>
+            <Dependent Role="OderMaster">
+              <PropertyRef Name="Tattoo_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OderMaster_ToTable_1">
+          <End Role="Member" Type="Self.Member" Multiplicity="0..1" />
+          <End Role="OderMaster" Type="Self.OderMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="UserName" />
+            </Principal>
+            <Dependent Role="OderMaster">
+              <PropertyRef Name="UserName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tattoo_ToTable">
+          <End Role="Tattoo_Type" Type="Self.Tattoo_Type" Multiplicity="0..1" />
+          <End Role="Tattoo" Type="Self.Tattoo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tattoo_Type">
+              <PropertyRef Name="Type_ID" />
+            </Principal>
+            <Dependent Role="Tattoo">
+              <PropertyRef Name="Type_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="REW_TATTOO_DBModelStoreContainer">
+          <EntitySet Name="Member" EntityType="Self.Member" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OderMaster" EntityType="Self.OderMaster" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tattoo" EntityType="Self.Tattoo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tattoo_Type" EntityType="Self.Tattoo_Type" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_OderMaster_ToTable" Association="Self.FK_OderMaster_ToTable">
+            <End Role="Tattoo" EntitySet="Tattoo" />
+            <End Role="OderMaster" EntitySet="OderMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OderMaster_ToTable_1" Association="Self.FK_OderMaster_ToTable_1">
+            <End Role="Member" EntitySet="Member" />
+            <End Role="OderMaster" EntitySet="OderMaster" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tattoo_ToTable" Association="Self.FK_Tattoo_ToTable">
+            <End Role="Tattoo_Type" EntitySet="Tattoo_Type" />
+            <End Role="Tattoo" EntitySet="Tattoo" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="REW_TATTOO_DBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Member">
+          <Key>
+            <PropertyRef Name="UserName" />
+          </Key>
+          <Property Name="UserName" Type="String" MaxLength="10" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Address" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Tel" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="EMail" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="OderMasters" Relationship="Self.FK_OderMaster_ToTable_1" FromRole="Member" ToRole="OderMaster" />
+        </EntityType>
+        <EntityType Name="OderMaster">
+          <Key>
+            <PropertyRef Name="O_ID" />
+          </Key>
+          <Property Name="O_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="O_Date" Type="DateTime" Precision="0" />
+          <Property Name="UserName" Type="String" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="Do_Date" Type="DateTime" Precision="0" />
+          <Property Name="Tattoo_ID" Type="Int32" />
+          <Property Name="Price" Type="Decimal" Precision="7" Scale="2" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Status" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Member" Relationship="Self.FK_OderMaster_ToTable_1" FromRole="OderMaster" ToRole="Member" />
+          <NavigationProperty Name="Tattoo" Relationship="Self.FK_OderMaster_ToTable" FromRole="OderMaster" ToRole="Tattoo" />
+        </EntityType>
+        <EntityType Name="Tattoo">
+          <Key>
+            <PropertyRef Name="Tattoo_ID" />
+          </Key>
+          <Property Name="Tattoo_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tattoo_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Tattoo_Pic" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Size" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Unit_Price" Type="Decimal" Precision="7" Scale="2" />
+          <Property Name="Type_ID" Type="Int32" />
+          <NavigationProperty Name="OderMasters" Relationship="Self.FK_OderMaster_ToTable" FromRole="Tattoo" ToRole="OderMaster" />
+          <NavigationProperty Name="Tattoo_Type" Relationship="Self.FK_Tattoo_ToTable" FromRole="Tattoo" ToRole="Tattoo_Type" />
+        </EntityType>
+        <EntityType Name="Tattoo_Type">
+          <Key>
+            <PropertyRef Name="Type_ID" />
+          </Key>
+          <Property Name="Type_ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Type_Name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Tattoos" Relationship="Self.FK_Tattoo_ToTable" FromRole="Tattoo_Type" ToRole="Tattoo" />
+        </EntityType>
+        <Association Name="FK_OderMaster_ToTable_1">
+          <End Role="Member" Type="Self.Member" Multiplicity="0..1" />
+          <End Role="OderMaster" Type="Self.OderMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Member">
+              <PropertyRef Name="UserName" />
+            </Principal>
+            <Dependent Role="OderMaster">
+              <PropertyRef Name="UserName" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OderMaster_ToTable">
+          <End Role="Tattoo" Type="Self.Tattoo" Multiplicity="0..1" />
+          <End Role="OderMaster" Type="Self.OderMaster" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tattoo">
+              <PropertyRef Name="Tattoo_ID" />
+            </Principal>
+            <Dependent Role="OderMaster">
+              <PropertyRef Name="Tattoo_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tattoo_ToTable">
+          <End Role="Tattoo_Type" Type="Self.Tattoo_Type" Multiplicity="0..1" />
+          <End Role="Tattoo" Type="Self.Tattoo" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tattoo_Type">
+              <PropertyRef Name="Type_ID" />
+            </Principal>
+            <Dependent Role="Tattoo">
+              <PropertyRef Name="Type_ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="REW_TATTOO_DBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Members" EntityType="Self.Member" />
+          <EntitySet Name="OderMasters" EntityType="Self.OderMaster" />
+          <EntitySet Name="Tattoos" EntityType="Self.Tattoo" />
+          <EntitySet Name="Tattoo_Type" EntityType="Self.Tattoo_Type" />
+          <AssociationSet Name="FK_OderMaster_ToTable_1" Association="Self.FK_OderMaster_ToTable_1">
+            <End Role="Member" EntitySet="Members" />
+            <End Role="OderMaster" EntitySet="OderMasters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OderMaster_ToTable" Association="Self.FK_OderMaster_ToTable">
+            <End Role="Tattoo" EntitySet="Tattoos" />
+            <End Role="OderMaster" EntitySet="OderMasters" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tattoo_ToTable" Association="Self.FK_Tattoo_ToTable">
+            <End Role="Tattoo_Type" EntitySet="Tattoo_Type" />
+            <End Role="Tattoo" EntitySet="Tattoos" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="REW_TATTOO_DBModelStoreContainer" CdmEntityContainer="REW_TATTOO_DBEntities">
+          <EntitySetMapping Name="Members">
+            <EntityTypeMapping TypeName="REW_TATTOO_DBModel.Member">
+              <MappingFragment StoreEntitySet="Member">
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="Tel" ColumnName="Tel" />
+                <ScalarProperty Name="EMail" ColumnName="EMail" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OderMasters">
+            <EntityTypeMapping TypeName="REW_TATTOO_DBModel.OderMaster">
+              <MappingFragment StoreEntitySet="OderMaster">
+                <ScalarProperty Name="O_ID" ColumnName="O_ID" />
+                <ScalarProperty Name="O_Date" ColumnName="O_Date" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="Do_Date" ColumnName="Do_Date" />
+                <ScalarProperty Name="Tattoo_ID" ColumnName="Tattoo_ID" />
+                <ScalarProperty Name="Price" ColumnName="Price" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="Status" ColumnName="Status" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tattoos">
+            <EntityTypeMapping TypeName="REW_TATTOO_DBModel.Tattoo">
+              <MappingFragment StoreEntitySet="Tattoo">
+                <ScalarProperty Name="Tattoo_ID" ColumnName="Tattoo_ID" />
+                <ScalarProperty Name="Tattoo_Name" ColumnName="Tattoo_Name" />
+                <ScalarProperty Name="Tattoo_Pic" ColumnName="Tattoo_Pic" />
+                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="Unit_Price" ColumnName="Unit_Price" />
+                <ScalarProperty Name="Type_ID" ColumnName="Type_ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tattoo_Type">
+            <EntityTypeMapping TypeName="REW_TATTOO_DBModel.Tattoo_Type">
+              <MappingFragment StoreEntitySet="Tattoo_Type">
+                <ScalarProperty Name="Type_ID" ColumnName="Type_ID" />
+                <ScalarProperty Name="Type_Name" ColumnName="Type_Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

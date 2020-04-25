@@ -1,0 +1,76 @@
+﻿@model REW_TATTOO_KORAT.Models.OderMaster
+
+@{
+    ViewBag.Title = "Details";
+
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>OderMaster</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.O_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.O_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Do_Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Do_Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Status)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Status)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Member.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Member.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tattoo.Tattoo_Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tattoo.Tattoo_Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.O_ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="11902de4dafc48b996303cd1cd001258" Name="Diagram1">
+        <EntityTypeShape EntityType="REW_TATTOO_DBModel.Member" Width="1.5" PointX="5.125" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="REW_TATTOO_DBModel.OderMaster" Width="1.5" PointX="8.375" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="REW_TATTOO_DBModel.Tattoo" Width="1.5" PointX="8.375" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="REW_TATTOO_DBModel.Tattoo_Type" Width="1.5" PointX="5.125" PointY="0.875" IsExpanded="true" />
+        <AssociationConnector Association="REW_TATTOO_DBModel.FK_OderMaster_ToTable_1" ManuallyRouted="false" />
+        <AssociationConnector Association="REW_TATTOO_DBModel.FK_OderMaster_ToTable" ManuallyRouted="true" >
+          <ConnectorPoint PointX="8.375" PointY="0.70833333333333326" />
+          <ConnectorPoint PointX="3.7708333333333339" PointY="0.70833333333333326" />
+          <ConnectorPoint PointX="3.7708333333333339" PointY="6.0244214966920033" />
+          <ConnectorPoint PointX="8.375" PointY="6.0244214966920033" />
+        </AssociationConnector>
+        <AssociationConnector Association="REW_TATTOO_DBModel.FK_Tattoo_ToTable" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

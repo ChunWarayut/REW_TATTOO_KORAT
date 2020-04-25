@@ -1,0 +1,71 @@
+﻿@model IEnumerable<REW_TATTOO_KORAT.Models.OderMaster>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="cart-table-area section-padding-100">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="cart-title mt-50">
+                    <h2>BOOKING</h2>
+                </div>
+
+                <div class="cart-table clearfix">
+                    <table class="table table-responsive">
+                        <thead class="">
+                            <tr>
+                                @*<th></th>*@
+                                <th style="">@Html.DisplayNameFor(model => model.O_Date)</th>
+                                <th>@Html.DisplayNameFor(model => model.Do_Date)</th>
+                                <th>@Html.DisplayNameFor(model => model.Price)</th>
+                                @*<th>@Html.DisplayNameFor(model => model.Description)</th>*@
+                                <th>@Html.DisplayNameFor(model => model.Member.FirstName)</th>
+                                <th>@Html.DisplayNameFor(model => model.Tattoo.Tattoo_Name)</th>
+                                <th>@Html.DisplayNameFor(model => model.Status)</th>
+                                <th />
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            @foreach (var item in Model)
+                            {
+                            <tr>
+                                @*<td class="cart_product_img">
+            <a href="#"><img src="~/image/@Html.DisplayFor(modelItem => item.Tattoo.Tattoo_Pic)" alt="Product"></a>
+        </td>*@
+                                <td>
+                                    @Convert.ToDateTime(item.O_Date).ToString("dd/MM/yyyy")
+                                </td>
+                                <td>
+                                    @Convert.ToDateTime(item.Do_Date).ToString("dd/MM/yyyy")
+                                </td>
+                                <td class="price">
+                                    @Html.DisplayFor(modelItem => item.Price)
+                                </td>
+                                @*<td class="cart_product_desc">
+            @Html.DisplayFor(modelItem => item.Description)
+        </td>*@
+                                <td class="cart_product_desc">
+                                    @Html.DisplayFor(modelItem => item.Member.FirstName)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Tattoo.Tattoo_Name)
+                                </td>
+                                <td class="cart_product_desc">
+                                    @Html.DisplayFor(modelItem => item.Status)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("CANCLE BOOKING", "Edit", new { id = item.O_ID })
+                                </td>
+                            </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

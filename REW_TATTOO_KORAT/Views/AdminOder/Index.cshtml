@@ -1,0 +1,63 @@
+﻿@model IEnumerable<REW_TATTOO_KORAT.Models.OderMaster>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>Index</h2>
+
+@*<p>
+    @Html.ActionLink("Create New", "Create")
+</p>*@
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.O_Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Do_Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Status)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Member.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tattoo.Tattoo_Name)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Convert.ToDateTime(item.O_Date).ToString("dd/MM/yyyy")
+        </td>
+        <td>
+            @Convert.ToDateTime(item.Do_Date).ToString("dd/MM/yyyy")
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Price)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Status)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Member.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Tattoo.Tattoo_Name)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.O_ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id = item.O_ID })
+        </td>
+    </tr>
+}
+
+</table>

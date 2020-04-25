@@ -1,0 +1,15 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h2>ระบบรายงานข้อมูล</h2>
+
+<hr />
+<ul>
+    <li>@Html.ActionLink("รายงานข้อมูลประเภทลายสัก", "Type", "Report")</li>
+    <li>@Html.ActionLink("รายงานข้อมูลลายสัก", "Tattoo", "Report")</li>
+    <li>@Html.ActionLink("รายงานข้อมูลการจองตามเวลา", "Booking", "Report")</li>
+    <li>@Html.ActionLink("รายงานข้อมูลยกเลิกการจองตามเวลา", "CancelBooking", "Report")</li>
+</ul>

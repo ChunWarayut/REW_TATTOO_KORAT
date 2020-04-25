@@ -1,0 +1,81 @@
+﻿
+@model IEnumerable<REW_TATTOO_KORAT.Models.Tattoo>
+
+@{
+    ViewBag.Title = "Home Page";
+}
+
+@*<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Tattoo_Name)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tattoo_Pic)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Size)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Unit_Price)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Tattoo_Type.Type_Name)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tattoo_Name)
+            </td>
+            <td>
+
+                <img src="~/image/@Html.DisplayFor(modelItem => item.Tattoo_Pic)"
+                     alt="company logo"
+                     height="50px"
+                     asp-append-version="true" />
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Size)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Unit_Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tattoo_Type.Type_Name)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Tattoo_ID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Tattoo_ID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Tattoo_ID })
+            </td>
+        </tr>
+    }
+
+</table>*@
+
+<div class="products-catagories-area clearfix">
+    <div class="amado-pro-catagory clearfix">
+
+        @foreach (var item in Model)
+        {
+            <!-- Single Catagory -->
+            <div class="single-products-catagory clearfix">
+                <a href="/Order/Create/@Html.DisplayFor(modelItem => item.Tattoo_ID)">
+                    <img src="~/image/@Html.DisplayFor(modelItem => item.Tattoo_Pic)" alt="">
+                    <!-- Hover Content -->
+                    <div class="hover-content" style="background-color: white; padding: 10px">
+                        <div class="line"></div>
+                        <p>From ฿@Html.DisplayFor(modelItem => item.Unit_Price)</p>
+                        <h4> @Html.DisplayFor(modelItem => item.Tattoo_Name) </h4>
+                    </div>
+                </a>
+            </div>
+
+        }
+
+    </div>
+</div>
